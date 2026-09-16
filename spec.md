@@ -36,7 +36,7 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 - [Sản phẩm 2]: ...
 
 ## §4. Thiết kế
-- Lát cắt MỘT CÂU: khi học viên bôi đen một đoạn/trang cụ thể và hỏi, nhưng hệ thống không khớp đủ tin cậy với nội dung tài liệu, tutor **liệt kê 2–3 đoạn/trang gần đúng nhất tìm được để học viên chọn**, thay vì báo "không tìm thấy" rồi dừng hoặc hỏi lại chung chung ("bạn cho biết từ khoá?").
+- Lát cắt MỘT CÂU: **[Học viên đang tự học trên VLearn] cần [hỏi về một đoạn/trang tài liệu cụ thể không khớp được với nội dung có sẵn] được [gợi ý 2–3 đoạn/trang gần đúng nhất để chọn thay vì báo "không tìm thấy" rồi dừng] giúp [học viên tiếp tục được đúng mạch, không phải tự đoán từ khoá khác hay bỏ dở].**
   - Lý do chọn đúng chỗ này: 50% lượt "không tìm thấy" hiện đã kết bằng một câu hỏi, nhưng không cải thiện rõ tỉ lệ gỡ được (63,8% vs 70,4% khi không hỏi) — vấn đề không phải "có hỏi lại hay không" mà là câu hỏi lại **không neo vào gì cụ thể**. 85,3% lượt trượt là câu hỏi neo theo số trang/slide, nên hệ thống thường có sẵn top-k đoạn gần đúng để gợi ý thay vì hỏi mở.
 - Non-goals (KHÔNG build ở lát cắt này):
   - Không sửa retrieval/indexing (5 tài liệu chiếm 53,2% số lượt trượt trong log — đây là lỗi hạ tầng, đã loại ở §2).
