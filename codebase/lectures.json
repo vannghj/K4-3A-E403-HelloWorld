@@ -1,0 +1,30 @@
+{
+  "day04": {
+    "title": "Day 04 · Prompt Engineering & Tool Calling",
+    "pages": [
+      { "page": 7, "title": "Ba nguyên tắc của Vibecoding",
+        "text": "Một prompt hiệu quả cần đảm bảo tính Intent-driven (nêu rõ mục tiêu), Context-first (cung cấp bối cảnh đầy đủ trước khi giao việc), và luôn chuẩn bị cho Human review — người dùng kiểm lại trước khi dùng kết quả." },
+      { "page": 15, "title": "Cấu trúc một prompt hiệu quả",
+        "text": "Một prompt rõ ràng thường có bốn phần: vai trò (role) mô hình cần đóng, nhiệm vụ cụ thể cần làm, ràng buộc (constraints) không được vi phạm, và định dạng đầu ra mong muốn." },
+      { "page": 24, "title": "Tool calling: khi nào để model tự chọn công cụ",
+        "text": "Chỉ nên cấp công cụ khi nhiệm vụ cần dữ liệu hoặc hành động nằm ngoài phạm vi kiến thức sẵn có của model. Mỗi công cụ cần mô tả rõ đầu vào và đầu ra để model gọi đúng." },
+      { "page": 31, "title": "Context window và bộ nhớ ngắn hạn",
+        "text": "Những gì nằm trong context window được model 'nhớ' trong lượt hội thoại hiện tại. Khi vượt quá giới hạn này, phần nội dung cũ nhất thường bị cắt bớt trước tiên." },
+      { "page": 44, "title": "Bài tập nhỏ: chấm một system prompt mẫu",
+        "text": "Prompt mẫu \"You are a helpful assistant. Be smart and professional...\" thiếu ràng buộc cụ thể và định dạng đầu ra rõ ràng, nên dễ khiến model trả lời lan man, không đúng trọng tâm." }
+    ]
+  },
+  "day03": {
+    "title": "Day 03 · Từ Chatbot đến Agentic Agent (ReAct)",
+    "pages": [
+      { "page": 6, "title": "Từ Chatbot đến Agent",
+        "text": "Chatbot chỉ phản hồi trong một lượt hội thoại. Agent có vòng lặp Thought → Action → Observation, tự quyết định bước tiếp theo dựa trên kết quả của bước trước, thay vì chỉ trả lời một lần." },
+      { "page": 14, "title": "Kiến trúc ReAct",
+        "text": "Mỗi vòng lặp ReAct gồm ba bước: model suy nghĩ (Thought), chọn công cụ để hành động (Action), rồi đọc kết quả trả về (Observation) trước khi quyết định vòng tiếp theo hay dừng lại." },
+      { "page": 22, "title": "Giới hạn của tool-calling truyền thống",
+        "text": "Kiến trúc gọi công cụ truyền thống xử lý tốt tác vụ một bước, rõ ràng đầu vào/đầu ra, nhưng gặp khó với tác vụ nhiều bước cần lập kế hoạch động và điều chỉnh theo kết quả trung gian." },
+      { "page": 30, "title": "Khi nào agent nên dừng vòng lặp",
+        "text": "Agent nên dừng vòng lặp khi đã đạt mục tiêu, khi vượt số bước tối đa cho phép, hoặc khi công cụ liên tục trả lỗi — để tránh vòng lặp vô hạn tốn tài nguyên." }
+    ]
+  }
+}
