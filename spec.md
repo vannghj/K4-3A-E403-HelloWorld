@@ -1,4 +1,4 @@
-# AI SPEC — [Tên lát cắt] · Nhóm [XX] · Zone [X]
+# AI SPEC — [Tên lát cắt] · Nhóm [HelloWorld] · Zone [2]
 Hướng: [x] A — VLearn  [ ] B — Trợ lý Học viên  [ ] C — Làn mở
 Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 
@@ -57,8 +57,12 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 ## §5. Kiểu lỗi — 4 lớp chỗ khó + kịch bản (≥8) [bảng theo guide §2.5]
 
 ## §6. Bốn đường đi của trải nghiệm
-- Happy path: · Low-confidence (②): · Failure/không căn cứ (①): · Correction (user sửa):
-- Khi bị đòi ngoài phạm vi (③): · Case đặc thù domain (④):
+- **Happy path**: câu hỏi neo rõ vào một trang/đoạn (VD "Trang 15 nói cấu trúc prompt gồm phần nào?") khớp đủ tin cậy với tài liệu → tutor trả lời thẳng, kèm trích dẫn `[trang N]`, không cần hỏi lại.
+- **Low-confidence (②)**: câu hỏi ngắn/mơ hồ (VD "phạm vi ở phần này là sao vậy") khớp một phần với ≥2 trang → tutor không đoán bừa, không hỏi mở chung chung, mà liệt kê 2–3 trang/đoạn gần đúng nhất để học viên bấm chọn (đúng cơ chế đã build ở prototype `Đúng Trang`).
+- **Failure/không có căn cứ (①)**: câu hỏi không khớp từ khoá nào của buổi học (VD hỏi cách deploy Docker trong buổi Prompt Engineering) → tutor nói rõ đã tra nhưng không thấy, nêu tên buổi học đang có, không bịa nội dung.
+- **Correction (user sửa)**: học viên từ chối hết các gợi ý hoặc gõ lại câu hỏi cụ thể hơn sau khi tutor gợi ý sai hướng → hệ thống coi là câu hỏi mới, phân loại lại từ đầu, không lặp lại đúng bộ gợi ý cũ.
+- **Khi bị đòi ngoài phạm vi (③)**: học viên hỏi thứ ngoài nội dung khoá học (nhờ làm hộ bài tập, hỏi ý kiến cá nhân ngoài bài giảng) → tutor từ chối lịch sự, nói rõ phạm vi hỗ trợ; tách biệt với case "không khớp vì diễn đạt mơ hồ" ở trên (đã ghi rõ là non-goal của lát cắt này ở §4).
+- **Case đặc thù domain (④)**: câu hỏi neo đúng số trang nhưng số trang trên VLearn lệch với số trang tài liệu gốc (hiện tượng thấy trong log thật, VD hỏi "trang 26" mà hệ thống đánh số khác) → tutor không chỉ báo "không có trang 26", mà gợi ý theo tiêu đề/nội dung gần nhất, tránh học viên tưởng mình hỏi sai.
 
 ## §7. Kiểm thử
 - Chiều chất lượng + định nghĩa kiểm chứng được:
