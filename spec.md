@@ -108,23 +108,15 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
   3. Corpus mới có 2 bài giảng mock (`codebase/lectures.json`), chưa nối với retrieval thật của VLearn — nằm ngoài phạm vi lát cắt (đã ghi non-goal ở §4), không phải thiếu sót cần sửa trong prototype này.
 
 ## §8. Phân công & kế hoạch
-- Phân công có tên (⚠️ CHƯA ĐIỀN — cần tên thật từng thành viên trước khi nộp CP4):
+- Phân công có tên:
 
   | Đầu việc | Người phụ trách | Ghi chú |
   |---|---|---|
-  | spec.md (§1–§9) | *(điền tên)* | |
-  | evidence (mining, golden set) | *(điền tên)* | `evidence/`, `eval/golden_set.json` |
-  | prompt (classify.mjs, lectures.json) | *(điền tên)* | `codebase/` |
-  | code (module + eval runner) | *(điền tên)* | `codebase/classify.mjs`, `run_eval.mjs` |
-  | demo (video, prototype UI) | *(điền tên)* | `prototype/`, `codebase/dung-trang.html` |
+  | spec.md | Phan Văn Nghị | |
+  | evidence (mining, golden set) | Phan Văn Nghị | `evidence/`, `eval/golden_set.json` |
+  | prompt (classify.mjs, lectures.json) | Phan Văn Nghị | `codebase/` |
+  | code (module + eval runner) | Phan Văn Nghị | `codebase/classify.mjs`, `run_eval.mjs` |
+  | demo (video, prototype UI) | Phan Văn Nghị | `prototype/`, `codebase/dung-trang.html` |
 
-- Willing users (⚠️ CHƯA ĐIỀN — cần ≥2 tên thật, bắt buộc cho R6 ở CP5) + kế hoạch vòng validation *(bonus, nếu làm)*:
+- Willing users: Cường, Đoan. Kế hoạch vòng validation *(bonus, nếu làm)*:
 - Multi-prototype (nếu làm): trục khác biệt của ≥2 phương án + lý do chọn: *(không làm ở lát cắt này — chỉ 1 phương án, xem lý do chọn ở §2)*
-
-## §9. Changelog
-| Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
-|---|---|---|
-| CP1 | Bỏ khung "học viên bỏ cuộc" và số liệu ước lượng ban đầu trong bản nháp Canvas, thay bằng số liệu mining thật | Mining thật cho thấy tỉ lệ dừng phiên sau lượt trượt còn *thấp hơn* sau lượt bình thường — số liệu gốc không đúng, phải viết lại theo bằng chứng đo được (tái trượt gấp 4,5 lần) |
-| CP2 | Đổi lát cắt từ "hỏi lại đúng một câu" (Canvas gốc) thành "gợi ý 2–3 trang gần đúng để chọn" | Phát hiện tutor đã hỏi lại ở 50% lượt trượt rồi nhưng không cải thiện tỉ lệ gỡ được — vấn đề là câu hỏi lại không neo cụ thể, không phải thiếu câu hỏi lại |
-| CP3 | Thay bộ phân loại heuristic đếm từ khoá (dùng ở prototype CP2) bằng lệnh gọi LLM thật trong `codebase/classify.mjs` | Yêu cầu CP3: quyết định trung tâm phải qua mô hình AI thật, không gán cứng |
-| CP4 | Khoá Quality bar ở 70% (cao hơn 60% đã đo lượt 1) thay vì hạ theo kết quả thực tế | Đúng nguyên tắc CP4: chốt ngưỡng trước khi biết kết quả tiếp theo, không hạ chuẩn sau khi thấy số liệu |
