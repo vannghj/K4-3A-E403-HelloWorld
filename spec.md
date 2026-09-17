@@ -113,9 +113,9 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
   | Đầu việc | Người phụ trách | Ghi chú |
   |---|---|---|
   | spec.md | Phan Văn Nghị | |
-  | evidence (mining, golden set) | Phan Văn Nghị | `evidence/`, `eval/golden_set.json` |
-  | prompt (classify.mjs, lectures.json) | Phan Văn Nghị | `codebase/` |
-  | code (module + eval runner) | Phan Văn Nghị | `codebase/classify.mjs`, `run_eval.mjs` |
+  | evidence (mining, golden set) | Nguyễn Triều Vương | `evidence/`, `eval/golden_set.json` |
+  | prompt (classify.mjs, lectures.json) | Nguyễn Anh Tú | `codebase/` |
+  | code (module + eval runner) | Lê Thị Hoài Thương | `codebase/classify.mjs`, `run_eval.mjs` |
   | demo (video, prototype UI) | Phan Văn Nghị | `prototype/`, `codebase/dung-trang.html` |
 
 - Willing users: Cường, Đoan. Kế hoạch vòng validation *(bonus, nếu làm)*:
