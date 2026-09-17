@@ -160,20 +160,7 @@ export async function classify({ lectureId, question, caseId }) {
 }
 
 // ---- CLI ----
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const args = process.argv.slice(2);
-  const get = (flag) => {
-    const i = args.indexOf(flag);
-    return i === -1 ? undefined : args[i + 1];
-  };
-  const lectureId = get("--lecture") ?? "day04";
-  const question = get("--question");
-  if (!question) {
-    console.error('Dùng: node codebase/classify.mjs --lecture day04 --question "câu hỏi"');
-    process.exit(1);
-  }
-  console.log(`→ Gửi câu hỏi tới model thật (bài giảng: ${lectureId})...\n`);
-  const result = await classify({ lectureId, question });
+function printResult(result) {
   console.log(`Đường gọi model : ${result.via}`);
   console.log(`Nhánh quyết định: ${result.tier}`);
   if (result.tier === "found") {
@@ -184,5 +171,43 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`Gợi ý            :`, result.candidates);
   }
   console.log(`Lý do            : ${result.reason}`);
-  console.log(`\n(Đã ghi log đầy đủ vào eval/call_log.jsonl)`);
+}
+
+async function runInteractive(lectureId) {
+  const { createInterface } = await import("node:readline/promises");
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  console.log(`Chế độ nhập trực tiếp — bài giảng: ${lectureId}. Gõ Enter rỗng hoặc Ctrl+C để thoát.\n`);
+  try {
+    for (;;) {
+      const question = (await rl.question("Nhập câu hỏi của học viên: ")).trim();
+      if (!question) break;
+      console.log(`\n→ Đang gửi tới model thật...\n`);
+      const result = await classify({ lectureId, question });
+      printResult(result);
+      console.log(`\n(Đã ghi log đầy đủ vào eval/call_log.jsonl)\n`);
+    }
+  } catch {
+    // stdin đóng đột ngột (Ctrl+C hoặc EOF) -> thoát êm, không in cảnh báo.
+  }
+  rl.close();
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const args = process.argv.slice(2);
+  const get = (flag) => {
+    const i = args.indexOf(flag);
+    return i === -1 ? undefined : args[i + 1];
+  };
+  const lectureId = get("--lecture") ?? "day04";
+  const question = get("--question");
+
+  if (!question) {
+    // Không truyền --question -> vào chế độ gõ trực tiếp (dùng để quay video demo thật).
+    await runInteractive(lectureId);
+  } else {
+    console.log(`→ Gửi câu hỏi tới model thật (bài giảng: ${lectureId})...\n`);
+    const result = await classify({ lectureId, question });
+    printResult(result);
+    console.log(`\n(Đã ghi log đầy đủ vào eval/call_log.jsonl)`);
+  }
 }
