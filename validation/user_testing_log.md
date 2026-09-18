@@ -1,6 +1,10 @@
 # Nhật ký thử nghiệm người dùng — R6 (CP5)
 
-⚠️ **File này là KHUNG mẫu, chưa có dữ liệu thật.** Điền sau mỗi lượt phỏng vấn thật, không dựng sẵn số liệu.
+## Trạng thái: CHƯA HOÀN THÀNH
+
+Nhóm chưa kịp thực hiện phỏng vấn người dùng ngoài nhóm trước hạn CP5 (13:00 18/9). Tự khai báo trung thực thay vì bịa số liệu — phần R6 (8 điểm bonus) không đạt ở mốc này. Toàn bộ phần bắt buộc khác của CP5 (`demo-slides.pdf`, `spec.md`) vẫn hoàn thành đúng hạn.
+
+Khung quy trình bên dưới được giữ lại để nhóm dùng khi thực hiện R6 sau, dù không kịp tính điểm CP5.
 
 ## Cách làm (nguyên tắc Mom Test)
 1. Đưa cho người thử **một nhiệm vụ cụ thể**, không giải thích trước sản phẩm làm gì.

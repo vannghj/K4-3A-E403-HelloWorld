@@ -124,4 +124,4 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 ## §9. Changelog
 | Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
 |---|---|---|
-| CP5 | *(chờ điền sau khi có kết quả R6 thật — xem `validation/user_testing_log.md`)* | |
+| CP5 | Không có thay đổi sản phẩm dựa trên phản hồi người dùng | R6 (validation ngoài nhóm) chưa kịp thực hiện trước hạn — tự khai báo trung thực, xem `validation/user_testing_log.md`. Thiết kế giữ nguyên như đã chốt ở CP4. |
