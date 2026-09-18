@@ -124,4 +124,4 @@ Loại: [x] Tối ưu tính năng có sẵn  [ ] Tính năng mới
 ## §9. Changelog
 | Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
 |---|---|---|
-| CP5 | Không có thay đổi sản phẩm dựa trên phản hồi người dùng | R6 (validation ngoài nhóm) chưa kịp thực hiện trước hạn — tự khai báo trung thực, xem `validation/user_testing_log.md`. Thiết kế giữ nguyên như đã chốt ở CP4. |
+| CP5 | Đổi thứ tự in kết quả trong `codebase/classify.mjs`: câu trả lời/kết luận lên trước, nhánh quyết định + lý do xuống sau | Phản hồi thật từ R6 (Đoan, willing user): "Có hơi nhiều chữ, mình không biết phần nào là câu trả lời chính." R6 mới thử được 2/5 người tối thiểu (cả hai đều là willing user) trước hạn — tự khai báo trung thực chưa đủ số, xem `validation/user_testing_log.md`. |

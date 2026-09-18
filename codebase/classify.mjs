@@ -160,16 +160,21 @@ export async function classify({ lectureId, question, caseId }) {
 }
 
 // ---- CLI ----
+// Thứ tự in: kết luận/câu trả lời lên TRƯỚC, chi tiết kỹ thuật (nhánh, lý do) xuống SAU.
+// Đổi theo phản hồi thật từ R6 (Đoan): "Có hơi nhiều chữ, mình không biết phần nào
+// là câu trả lời chính." — xem validation/user_testing_log.md.
 function printResult(result) {
-  console.log(`Đường gọi model : ${result.via}`);
-  console.log(`Nhánh quyết định: ${result.tier}`);
   if (result.tier === "found") {
-    console.log(`Trang            : ${result.page}`);
     console.log(`Trả lời          : ${result.answer}`);
-  }
-  if (result.tier === "clarify") {
+    console.log(`(Trang ${result.page})`);
+  } else if (result.tier === "clarify") {
     console.log(`Gợi ý            :`, result.candidates);
+  } else if (result.tier === "notfound") {
+    console.log(`Không tìm thấy căn cứ trong tài liệu.`);
+  } else if (result.tier === "out_of_scope") {
+    console.log(`Ngoài phạm vi hỗ trợ.`);
   }
+  console.log(`\nNhánh quyết định: ${result.tier} · Đường gọi model: ${result.via}`);
   console.log(`Lý do            : ${result.reason}`);
 }
 
