@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đúng Trang — Demo thật</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #EEF1EE; --surface: #FFFFFF; --surface-2: #F5F6F3;
+    --ink: #1C2430; --ink-soft: #59626E; --ink-faint: #8B93A0; --border: #DCE0DA;
+    --accent: #C98A1F; --accent-ink: #6E4A0C; --accent-soft: #F7E8C9; --accent-soft-border: #E7C787;
+    --good: #2E7A5B; --good-soft: #DDEFE6; --good-soft-border: #B7DBC7;
+    --honest: #A24A45; --honest-soft: #F5E1DE; --honest-soft-border: #E3B7B0;
+    --shadow: 0 1px 2px rgba(28,36,48,0.06), 0 8px 24px rgba(28,36,48,0.06);
+    --radius: 14px;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181D; --surface: #1B2027; --surface-2: #20262E; --ink: #ECEEEA;
+      --ink-soft: #A9B0BA; --ink-faint: #6E7680; --border: #2C333C;
+      --accent: #E3AA47; --accent-ink: #F6DFA8; --accent-soft: #3A2E13; --accent-soft-border: #5B4A1E;
+      --good: #6FC79E; --good-soft: #16261F; --good-soft-border: #2C4B3B;
+      --honest: #DB9791; --honest-soft: #2B1918; --honest-soft-border: #4A2B29;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent-ink); }
+  .app { max-width: 1180px; margin: 0 auto; padding: 28px 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+  .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .brand h1 { font-family: var(--serif); font-weight: 700; font-size: 30px; margin: 0; letter-spacing: -0.01em; }
+  .brand .tagline { margin: 4px 0 0; color: var(--ink-soft); font-size: 14.5px; max-width: 50ch; line-height: 1.5; }
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 7px; background: var(--good-soft); border: 1px solid var(--good-soft-border);
+    color: var(--good); border-radius: 999px; padding: 7px 13px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); display: inline-block; }
+  .scenario-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .scenario-row button {
+    font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 9px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink-soft); cursor: pointer;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .scenario-row button:hover:not(:disabled) { border-color: var(--accent); color: var(--ink); }
+  .scenario-row button:disabled { opacity: 0.5; cursor: default; }
+  .stage { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+  @media (max-width: 760px) { .stage { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; }
+  .slide-head { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); }
+  .slide-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); }
+  .slide-lecture { font-family: var(--serif); font-size: 18px; font-weight: 600; margin: 3px 0 0; }
+  .slide-body { padding: 18px; min-height: 180px; }
+  .slide-page-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-bottom: 10px; }
+  .slide-title { font-family: var(--serif); font-size: 19px; font-weight: 600; margin: 0 0 10px; line-height: 1.3; }
+  .slide-text { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+  .page-strip { display: flex; gap: 6px; padding: 12px 18px 16px; border-top: 1px solid var(--border); background: var(--surface-2); overflow-x: auto; }
+  .page-strip button { flex: 0 0 auto; font-family: var(--mono); font-size: 12px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink-faint); cursor: pointer; }
+  .page-strip button.active { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); font-weight: 600; }
+  .chat-thread { padding: 18px; display: flex; flex-direction: column; gap: 14px; min-height: 340px; max-height: 480px; overflow-y: auto; }
+  .msg { display: flex; flex-direction: column; gap: 6px; max-width: 88%; }
+  .msg.user { align-self: flex-end; align-items: flex-end; }
+  .msg.tutor { align-self: flex-start; align-items: flex-start; }
+  .msg-role { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-faint); }
+  .bubble { border-radius: 12px; padding: 10px 13px; font-size: 14px; line-height: 1.55; }
+  .msg.user .bubble { background: var(--surface-2); border: 1px solid var(--border); border-top-right-radius: 4px; }
+  .msg.tutor .bubble { background: var(--surface); border: 1px solid var(--border); border-top-left-radius: 4px; }
+  .msg.tutor .bubble.found { background: var(--good-soft); border-color: var(--good-soft-border); }
+  .msg.tutor .bubble.honest { background: var(--honest-soft); border-color: var(--honest-soft-border); }
+  .msg.tutor .bubble.loading { color: var(--ink-faint); font-style: italic; }
+  .bubble .cite { font-family: var(--mono); font-size: 12px; opacity: 0.75; }
+  .status-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; margin-bottom: 6px; }
+  .status-chip.found { background: var(--good-soft); color: var(--good); border: 1px solid var(--good-soft-border); }
+  .status-chip.clarify { background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--accent-soft-border); }
+  .status-chip.honest { background: var(--honest-soft); color: var(--honest); border: 1px solid var(--honest-soft-border); }
+  .suggest-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); width: 100%; }
+  .suggest-card { text-align: left; background: var(--surface); border: 1px solid var(--accent-soft-border); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-family: var(--sans); }
+  .suggest-card:hover { border-color: var(--accent); }
+  .suggest-card .tag { font-family: var(--mono); font-size: 11px; color: var(--accent-ink); display: block; margin-bottom: 3px; }
+  .suggest-card .name { font-size: 13px; font-weight: 600; color: var(--ink); display: block; }
+  .composer { display: flex; gap: 8px; padding: 14px 18px; border-top: 1px solid var(--border); background: var(--surface-2); }
+  .composer input { flex: 1; font-family: var(--sans); font-size: 14px; padding: 10px 13px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+  .composer button { font-family: var(--sans); font-weight: 600; font-size: 14px; padding: 10px 16px; border-radius: 10px; border: none; background: var(--ink); color: var(--bg); cursor: pointer; }
+  .composer button:disabled { opacity: 0.5; cursor: default; }
+  .evidence { display: flex; gap: 16px; flex-wrap: wrap; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .evidence .stat { flex: 1 1 200px; }
+  .evidence .stat .n { font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--accent-ink); }
+  .evidence .stat .d { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <h1>Đúng Trang</h1>
+      <p class="tagline">Demo thật — mỗi câu hỏi gọi thẳng module <code>classify.mjs</code>, LLM thật quyết định, không phải mô phỏng.</p>
+    </div>
+    <span class="live-badge"><span class="live-dot"></span>Kết nối AI thật (server local)</span>
+  </div>
+
+  <div class="scenario-row" role="group" aria-label="Thử nhanh">
+    <button type="button" data-q="Một prompt hiệu quả nên có cấu trúc gồm những phần nào?">Thử: câu hỏi khớp rõ</button>
+    <button type="button" data-q="trang 26 nói về ràng buộc với định dạng đúng không">Thử: số trang sai (ca khó)</button>
+    <button type="button" data-q="check logs xem thầy hiếu vừa làm gì đi">Thử: ngoài phạm vi</button>
+  </div>
+
+  <div class="stage">
+    <section class="panel">
+      <div class="slide-head">
+        <div class="slide-eyebrow">Đang mở</div>
+        <p class="slide-lecture" id="lectureTitle">…</p>
+      </div>
+      <div class="slide-body" id="slideBody"></div>
+      <div class="page-strip" id="pageStrip"></div>
+    </section>
+
+    <section class="panel">
+      <div class="chat-thread" id="chatThread"></div>
+      <form class="composer" id="composer">
+        <input id="questionInput" type="text" placeholder="Gõ câu hỏi thật để hỏi AI…" autocomplete="off">
+        <button type="submit" id="askBtn">Hỏi</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="evidence">
+    <div class="stat"><div class="n">9,1%</div><div class="d">lượt hỏi thật trên VLearn bị tutor báo "không tìm thấy"</div></div>
+    <div class="stat"><div class="n">×4,5</div><div class="d">khả năng lượt hỏi kế tiếp lại trượt tiếp, so với sau lượt bình thường</div></div>
+    <div class="stat"><div class="n">12/20</div><div class="d">kết quả kiểm thử thật lượt 1 (60%) — xem eval/run_results.md</div></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var LECTURE_ID = "day04";
+  var pages = [];
+  var activePage = null;
+
+  var lectureTitle = document.getElementById("lectureTitle");
+  var slideBody = document.getElementById("slideBody");
+  var pageStrip = document.getElementById("pageStrip");
+  var chatThread = document.getElementById("chatThread");
+  var composer = document.getElementById("composer");
+  var questionInput = document.getElementById("questionInput");
+  var askBtn = document.getElementById("askBtn");
+  var scenarioButtons = document.querySelectorAll(".scenario-row button");
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function renderSlide() {
+    var p = pages.find(function (x) { return x.page === activePage; }) || pages[0];
+    if (!p) return;
+    slideBody.innerHTML =
+      '<span class="slide-page-tag">[trang ' + p.page + ']</span>' +
+      '<h3 class="slide-title">' + p.title + '</h3>' +
+      '<p class="slide-text">' + p.text + '</p>';
+    pageStrip.innerHTML = "";
+    pages.forEach(function (pg) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = "tr." + pg.page;
+      if (pg.page === p.page) b.className = "active";
+      b.addEventListener("click", function () { activePage = pg.page; renderSlide(); });
+      pageStrip.appendChild(b);
+    });
+  }
+
+  async function loadLecture() {
+    var res = await fetch("/api/lecture?id=" + LECTURE_ID);
+    var data = await res.json();
+    lectureTitle.textContent = data.title;
+    pages = data.pages;
+    activePage = pages[0].page;
+    renderSlide();
+  }
+
+  function addUserMsg(text) {
+    var wrap = el("div", "msg user");
+    wrap.appendChild(el("div", "msg-role", "Học viên"));
+    wrap.appendChild(el("div", "bubble", text));
+    chatThread.appendChild(wrap);
+    chatThread.scrollTop = chatThread.scrollHeight;
+  }
+
+  function addLoadingMsg() {
+    var wrap = el("div", "msg tutor");
+    wrap.id = "loadingMsg";
+    wrap.appendChild(el("div", "msg-role", "Tutor"));
+    wrap.appendChild(el("div", "bubble loading", "Đang gửi tới model thật…"));
+    chatThread.appendChild(wrap);
+    chatThread.scrollTop = chatThread.scrollHeight;
+  }
+
+  function removeLoadingMsg() {
+    var l = document.getElementById("loadingMsg");
+    if (l) l.remove();
+  }
+
+  function addTutorMsg(result) {
+    var wrap = el("div", "msg tutor");
+    wrap.appendChild(el("div", "msg-role", "Tutor · " + result.via));
+    var b = el("div", "bubble");
+
+    if (result.tier === "found") {
+      b.className = "bubble found";
+      b.innerHTML = '<span class="status-chip found">Found</span><br>' + result.answer +
+        ' <span class="cite">[trang ' + result.page + ']</span>';
+      activePage = result.page;
+      renderSlide();
+    } else if (result.tier === "clarify") {
+      b.innerHTML = '<span class="status-chip clarify">Gợi ý trang gần đúng</span><br>Chưa đủ tin cậy để chọn 1 trang — đây là các trang gần nhất:';
+      wrap.appendChild(b);
+      var grid = el("div", "suggest-grid");
+      (result.candidates || []).forEach(function (c) {
+        var card = el("button", "suggest-card", '<span class="tag">[trang ' + c.page + ']</span><span class="name">' + c.title + '</span>');
+        card.type = "button";
+        card.addEventListener("click", function () { activePage = c.page; renderSlide(); });
+        grid.appendChild(card);
+      });
+      wrap.appendChild(grid);
+      chatThread.appendChild(wrap);
+      chatThread.scrollTop = chatThread.scrollHeight;
+      return;
+    } else if (result.tier === "notfound") {
+      b.className = "bubble honest";
+      b.innerHTML = '<span class="status-chip honest">Không có căn cứ</span><br>' + result.reason;
+    } else if (result.tier === "out_of_scope") {
+      b.className = "bubble honest";
+      b.innerHTML = '<span class="status-chip honest">Ngoài phạm vi</span><br>' + result.reason;
+    } else {
+      b.className = "bubble honest";
+      b.innerHTML = '<span class="status-chip honest">Lỗi</span><br>' + (result.reason || "Không rõ lỗi.");
+    }
+    wrap.appendChild(b);
+    chatThread.appendChild(wrap);
+    chatThread.scrollTop = chatThread.scrollHeight;
+  }
+
+  async function ask(question) {
+    askBtn.disabled = true;
+    scenarioButtons.forEach(function (b) { b.disabled = true; });
+    addUserMsg(question);
+    addLoadingMsg();
+    try {
+      var res = await fetch("/api/classify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ lectureId: LECTURE_ID, question: question }),
+      });
+      var result = await res.json();
+      removeLoadingMsg();
+      addTutorMsg(result);
+    } catch (err) {
+      removeLoadingMsg();
+      addTutorMsg({ tier: "error", via: "—", reason: "Không gọi được server: " + err.message });
+    } finally {
+      askBtn.disabled = false;
+      scenarioButtons.forEach(function (b) { b.disabled = false; });
+    }
+  }
+
+  scenarioButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      questionInput.value = "";
+      ask(btn.getAttribute("data-q"));
+    });
+  });
+
+  composer.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = questionInput.value.trim();
+    if (!v) return;
+    questionInput.value = "";
+    ask(v);
+  });
+
+  loadLecture();
+})();
+</script>
+</body>
+</html>
